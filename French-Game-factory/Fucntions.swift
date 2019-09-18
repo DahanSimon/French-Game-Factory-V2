@@ -24,7 +24,7 @@ func checkCaracterName(player: Player, choosedName: String) -> Bool{
 func printPlayersTeam(player: Player) {
     var i = 1
     for character in player.team {
-        print("\(i)- \(character.name), is a \(type(of: character)), he has \(character.lifePoints), he can use his \(character.weapon)")
+        print("\(i)- \(character.name), is a \(type(of: character)), he has \(character.lifePoints), he can use his \(character.weapon.weaponName) and he is alive: \(character.isAlive)")
         i += 1
     }
 }
@@ -37,6 +37,7 @@ func playerLost(player: Player) {
             dead += 1
         }
     }
+    print("dead: \(dead)")
     if dead == 3 {
         player.won = false
     }
@@ -49,4 +50,17 @@ func readInput(input: String, min: Int, max: Int) -> Int {
         }
     }
     return -1
+}
+
+
+func printStats(winner: Player, looser: Player, lap: Int) {
+    print("La partie est terminé \(winner.name) a gagné ! En \(lap) tours.\n"
+        +  "Voici son équipe :\n")
+    for character in winner.team {
+            print(" - \(character.name)\t" + "\(character.lifePoints) ")
+    }
+    print("Contre \(looser.name), voici son équipe :")
+    for caracter in looser.team {
+        print(" - \(caracter.name)\t")
+    }
 }

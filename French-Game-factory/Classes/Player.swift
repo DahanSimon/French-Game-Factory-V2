@@ -87,19 +87,40 @@ class Player {
                         attackedCharacter.lifePoints -= playingCharacter.weapon.damageCapacity
                         playerTurnIsOver = true
                         if attackedCharacter.lifePoints <= 0 {
-                            attackedCharacter.isAlive = false
+                            player2.team[attackedCharacterIndex].isAlive = false
                         }
                     }
                     else {
                         print("The character you choosed is already dead or you entered a wrong value try again (press enter to continue)")
-                        readLine()!
+                        readLine()
+                    }
+                }
+                else {
+                    print("On wich member of your team would like to use \(playingCharacter.weapon.weaponName)")
+                    printPlayersTeam(player: player1)
+                    let healedCharacterIndex = readInput(input: readLine()!, min: 1, max: 3)
+                    if healedCharacterIndex != -1 && player2.team[healedCharacterIndex].isAlive == true {
+                        let healedCharacter = player1.team[healedCharacterIndex]
+                        if healedCharacter.role != "healer" {
+                            healedCharacter.lifePoints += playingCharacter.weapon.healingCapacity
+                            playerTurnIsOver = true
+                        }
+                        else {
+                            print("Sorry you can't heal a heealer try again (press enter to continue)")
+                            readLine()
+                        }
+                        
+                    }
+                    else {
+                        print("The character you choosed is already dead or you entered a wrong value try again (press enter to continue)")
+                        readLine()
                     }
                 }
                 
             }
             else {
                 print("The character you choosed is already dead or you entered a wrong value try again (press enter to continue)")
-                readLine()!
+                readLine()
             }
         }
     }

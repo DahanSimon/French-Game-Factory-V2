@@ -13,25 +13,31 @@ while true {
     readLine()
     let game = Game(player1Name: player1Name, player2Name: player2Name)
     game.player1.createTeam(player: game.player1)
-    printPlayersTeam(player: game.player1)
+//    printPlayersTeam(player: game.player1)
 
     game.player2.createTeam(player: game.player2)
-    printPlayersTeam(player: game.player2)
+//    printPlayersTeam(player: game.player2)
+    var lap = 0
     while true {
+        print("\(game.player1.name): won: \(game.player1.won)")
         game.player1.playing(player1: game.player1, player2: game.player2)
-        playerLost(player: game.player1)
-        if game.player1.won == true {
+        playerLost(player: game.player2)
+        if game.player2.won != false {
+//            print("\(game.player2.name): won: \(game.player2.won)")
             game.player2.playing(player1: game.player2, player2: game.player1)
-            playerLost(player: game.player2)
-            if game.player2.won == false {
+            playerLost(player: game.player1)
+            if game.player1.won == false {
                 print("\(game.player2.name) lost !")
+                printStats(winner: game.player2, looser: game.player1, lap: lap)
                 break
             }
         }
         else {
             print("\(game.player1.name) lost !")
+            printStats(winner: game.player1, looser: game.player2, lap: lap)
             break
         }
+        lap += 1
     }
     
     
