@@ -67,4 +67,40 @@ class Player {
         }
         
     }
+    
+    func playing(player1: Player, player2: Player) {
+        var playerTurnIsOver = false
+        while playerTurnIsOver == false {
+            print("\(player1.name) it's your turn ! Please select a character of your team to play with !")
+            printPlayersTeam(player: player1)
+            let playingCharacterIndex = readInput(input: readLine()!, min: 1, max: 3)
+            if playingCharacterIndex != -1 && player1.team[playingCharacterIndex].isAlive == true {
+                let playingCharacter = player1.team[playingCharacterIndex]
+                print("You choosed \(playingCharacter.name)")
+                print("\(playingCharacter) can use \(playingCharacter.weapon.weaponName)")
+                if playingCharacter.role == "attacker" {
+                    print("On wich member of \(player2.name)'s team would like to use \(playingCharacter.weapon.weaponName)")
+                    printPlayersTeam(player: player2)
+                    let attackedCharacterIndex = readInput(input: readLine()!, min: 1, max: 3)
+                    if attackedCharacterIndex != -1 && player2.team[attackedCharacterIndex].isAlive == true {
+                        let attackedCharacter = player2.team[attackedCharacterIndex]
+                        attackedCharacter.lifePoints -= playingCharacter.weapon.damageCapacity
+                        playerTurnIsOver = true
+                        if attackedCharacter.lifePoints <= 0 {
+                            attackedCharacter.isAlive = false
+                        }
+                    }
+                    else {
+                        print("The character you choosed is already dead or you entered a wrong value try again (press enter to continue)")
+                        readLine()!
+                    }
+                }
+                
+            }
+            else {
+                print("The character you choosed is already dead or you entered a wrong value try again (press enter to continue)")
+                readLine()!
+            }
+        }
+    }
 }

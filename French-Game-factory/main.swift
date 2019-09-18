@@ -16,7 +16,27 @@ while true {
     printPlayersTeam(player: game.player1)
 
     game.player2.createTeam(player: game.player2)
-    printPlayersTeam(player: game.player2)    //   Tant que tout personnges d'une même équipe ne sont pas mort
+    printPlayersTeam(player: game.player2)
+    while true {
+        game.player1.playing(player1: game.player1, player2: game.player2)
+        playerLost(player: game.player1)
+        if game.player1.won == true {
+            game.player2.playing(player1: game.player2, player2: game.player1)
+            playerLost(player: game.player2)
+            if game.player2.won == false {
+                print("\(game.player2.name) lost !")
+                break
+            }
+        }
+        else {
+            print("\(game.player1.name) lost !")
+            break
+        }
+    }
+    
+    
+
+    //   Tant que tout personnges d'une même équipe ne sont pas mort
 //    while game.isOver == false {
 //        //        Le joueur1 commence a jouer
 //        playing(player: player1, player2: player2)
