@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B260FD22330F84C00F3210D /* main_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FD12330F84C00F3210D /* main_old.swift */; };
 		6B260FD923310AA500F3210D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FD823310AA500F3210D /* main.swift */; };
 		6B260FDC23310EED00F3210D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDB23310EED00F3210D /* Game.swift */; };
 		6B260FDE23310F1600F3210D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDD23310F1600F3210D /* Player.swift */; };
@@ -27,6 +26,7 @@
 		6B260FFC233119EF00F3210D /* MagicBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FFB233119EF00F3210D /* MagicBean.swift */; };
 		6B260FFE23311A1500F3210D /* Raphaello.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FFD23311A1500F3210D /* Raphaello.swift */; };
 		6B26100123311FE700F3210D /* Fucntions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B26100023311FE700F3210D /* Fucntions.swift */; };
+		6B2610032332775700F3210D /* WeaponArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2610022332775700F3210D /* WeaponArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		6B260FCE2330F84C00F3210D /* French-Game-factory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "French-Game-factory"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B260FD12330F84C00F3210D /* main_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main_old.swift; sourceTree = "<group>"; };
 		6B260FD823310AA500F3210D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6B260FDB23310EED00F3210D /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		6B260FDD23310F1600F3210D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		6B260FFB233119EF00F3210D /* MagicBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicBean.swift; sourceTree = "<group>"; };
 		6B260FFD23311A1500F3210D /* Raphaello.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raphaello.swift; sourceTree = "<group>"; };
 		6B26100023311FE700F3210D /* Fucntions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fucntions.swift; sourceTree = "<group>"; };
+		6B2610022332775700F3210D /* WeaponArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,6 @@
 		6B260FD02330F84C00F3210D /* French-Game-factory */ = {
 			isa = PBXGroup;
 			children = (
-				6B260FD12330F84C00F3210D /* main_old.swift */,
 				6B260FE82331124B00F3210D /* Weapons */,
 				6B260FE32331108E00F3210D /* Characters */,
 				6B260FDA23310EA500F3210D /* Classes */,
@@ -139,6 +138,7 @@
 				6B260FEF2331187000F3210D /* Bazooka.swift */,
 				6B260FF72331198400F3210D /* sword.swift */,
 				6B260FFB233119EF00F3210D /* MagicBean.swift */,
+				6B2610022332775700F3210D /* WeaponArray.swift */,
 			);
 			path = Weapons;
 			sourceTree = "<group>";
@@ -205,11 +205,11 @@
 				6B260FFC233119EF00F3210D /* MagicBean.swift in Sources */,
 				6B260FDE23310F1600F3210D /* Player.swift in Sources */,
 				6B260FE72331116D00F3210D /* Weapon.swift in Sources */,
-				6B260FD22330F84C00F3210D /* main_old.swift in Sources */,
 				6B260FFA233119AF00F3210D /* D'Artagnan.swift in Sources */,
 				6B260FE023310F3900F3210D /* Character.swift in Sources */,
 				6B260FF82331198400F3210D /* sword.swift in Sources */,
 				6B260FE22331107200F3210D /* CharacterList.swift in Sources */,
+				6B2610032332775700F3210D /* WeaponArray.swift in Sources */,
 				6B260FF62331190600F3210D /* Prayer.swift in Sources */,
 				6B260FE5233110BA00F3210D /* Baltazar.swift in Sources */,
 				6B260FDC23310EED00F3210D /* Game.swift in Sources */,
