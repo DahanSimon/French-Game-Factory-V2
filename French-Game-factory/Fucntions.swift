@@ -14,7 +14,7 @@ func checkCaracterName(player: Player, choosedName: String) -> Bool{
 //    Runnig through the array containing the player's team
             for characterName in player.team {
 //                if the name already exist return false
-                if characterName.name == choosedName {
+                if characterName.name == choosedName || choosedName == ""{
                     return false
                 }
             }

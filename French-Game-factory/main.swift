@@ -4,14 +4,21 @@ while true {
     
 //    Asking name faor thee first Player
     print("Hi you're the first player ! \nWhat's your name ?")
-    let player1Name = readLine()!
-    
+    var player1Name = readLine()!
+    while player1Name == "" {
+        print("You can't stay nameless please enter your name : ")
+        player1Name = readLine()!
+    }
 //    Asking player1 to pass the computer
     nextPlayer(playersName: player1Name)
     
     //    Asking name for second Player
     print("Hi you're the second player ! \nWhat's your name ?")
-    let player2Name = readLine()!
+    var player2Name = readLine()!
+    while player2Name == "" {
+        print("You can't stay nameless please enter your name : ")
+        player2Name = readLine()!
+    }
     nextPlayer(playersName: player2Name)
     
 //    Initialisation of the game (Creating 2 players with there names)

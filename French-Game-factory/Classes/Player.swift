@@ -39,11 +39,19 @@ class Player {
                     
 //                    If the name has already been given to someone else we ask for a new name
                     while check == false {
-                        print("This character already exist please choose another name ! (press to continue)")
-                        _ = readLine()
-                        print("Thank you now please enter an unused name: ")
-                        pickedCharacterNewName = readLine()!
-                        check = checkCaracterName(player: player, choosedName: pickedCharacterNewName)
+                        if pickedCharacterNewName != "" {
+                            print("This character already exist please choose another name ! (press to continue)")
+                            _ = readLine()
+                            print("Thank you now please enter an unused name: ")
+                            pickedCharacterNewName = readLine()!
+                            check = checkCaracterName(player: player, choosedName: pickedCharacterNewName)
+                        }
+                        else {
+                            print("You can't leave a character nameless ! Please enter a new name: ")
+                            pickedCharacterNewName = readLine()!
+                            check = checkCaracterName(player: player, choosedName: pickedCharacterNewName)
+                        }
+                        
                     }
                     let newCharacter = selcectAndNameCharacter(pickedCharacter: selectedCharacterIndex + 1, newCharacterName: pickedCharacterNewName)
                     player.team.append(newCharacter)
