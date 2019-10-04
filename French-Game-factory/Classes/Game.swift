@@ -7,15 +7,19 @@ class Game {
         player1 = Player(playerName: player1Name)
         player2 = Player(playerName: player2Name)
     }
-    public func playing(game: Game, randomNumber: Int) {
+    
+    func playing(game: Game, randomNumber: Int) {
         var playerTurnIsOver = false
+        
         var playingPlayer = player1
         var oponent = player2
         if game.lap % 2 == 0 {
             playingPlayer = player2
             oponent = player1
         }
+        
         while playerTurnIsOver == false {
+            
             print("\(playingPlayer.name) it's your turn ! Please select a character of your team to play with !")
             guard let playingCharacter = selectCharacter(player: playingPlayer) else{
                 player1.won = false
@@ -24,18 +28,18 @@ class Game {
             print("You choosed \(playingCharacter.name)")
             print("\(playingCharacter.name) can use \(playingCharacter.weapon.weaponName)")
             if lap == randomNumber {
-                //                        Make the magicBox appear and change the playing character's weapon
+//                        Make the magicBox appear and change the playing character's weapon
                 magicBoxAppear(playingCharacter: playingCharacter)
             }
-            //                If the character playing is an attacker
+//                If the character playing character is an attacker
             if playingCharacter.role == Role.attacker {
                 
-                self.attackerPlaying(playingCharacter: playingCharacter, oponent: oponent)
+                attackerPlaying(playingCharacter: playingCharacter, oponent: oponent)
                 playerTurnIsOver = true
             }
                 
             else {
-                self.healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
+                healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
                 playerTurnIsOver = true
                 
                 
@@ -44,9 +48,11 @@ class Game {
     }
     
     func attackerPlaying(playingCharacter: Character, oponent: Player) {
-        //                    Asking wich character the user would like to attack
+ 
         print("On wich member of \(oponent.name)'s team would like to use \(playingCharacter.weapon.weaponName)")
+        //                    Asking wich character the user would like to attack
         guard let attackedCharacter = selectCharacter(player: oponent) else {
+//            if there is nothing to select it means that every member the oponent's team is dead so he lost
             oponent.won = false
             return
         }
@@ -56,7 +62,9 @@ class Game {
     }
     
     func healerPlaying(playingCharacter: Character, player: Player) {
+        //                    Asking wich character the user would like to heal
         guard let healedCharacter = selectCharacter(player: player) else{
+            //            if there is nothing to select it means that every member the player's team is dead so he lost
             player.won = false
             return
         }
@@ -71,23 +79,19 @@ class Game {
         }
     }
     
-    public func selectCharacter(player: Player) -> Character?{
-        //    afficher la liste des perso vivant
+    func selectCharacter(player: Player) -> Character?{
         var aliveCharacter: [Int: Character]
         printPlayersTeam(player: player)
+//        we create a dictionnary of only the alive character from the player's team
         aliveCharacter = createDictionnary(player: player)
-        //    Lire l'entre
-        let playingCharacterIndex = readInput(min: 1, max: aliveCharacter.count)
-        if let selectedCharacter = aliveCharacter[playingCharacterIndex] {
-            return selectedCharacter
+//        if aliveCharcater is empty it means that every member of the player's team is dead so we don(t ask him to choose
+        if aliveCharacter.count != 0 {
+            let playingCharacterIndex = readInput(min: 1, max: aliveCharacter.count)
+            if let selectedCharacter = aliveCharacter[playingCharacterIndex] {
+                return selectedCharacter
+            }
         }
-        else {
-            return nil
-        }
-        
-        
-        
-        //    retourner correspodant
+        return nil
     }
     
     func printStats(winner: Player, looser: Player, lap: Int) {
@@ -95,7 +99,13 @@ class Game {
             +  "This is his team\n")
         //    We print the winner's team and his character's lifePoints
         for character in winner.team.values {
-            print(" - \(character.name)\t" + "\(character.lifePoints) ")
+            if character.lifePoints > 0 {
+                print(" - \(character.name)\t" + "\(character.lifePoints) ")
+            }
+            else {
+                print(" - \(character.name)\t" + " DEAD")
+            }
+            
         }
         print("Against \(looser.name), this is his team :")
         //    We print the loser's team
@@ -157,7 +167,6 @@ class Game {
     func createDictionnary(player: Player) -> [Int: Character] {
         var i = 1
         var aliveCharacter = [Int: Character]()
-        //    We print the players team by going threw the array
         for (character) in player.team.values {
             if character.lifePoints > 0 {
                 aliveCharacter[i] = character
@@ -166,19 +175,6 @@ class Game {
             
         }
         return aliveCharacter
-    }
-    //We check if the player lost by checking the isAlive attribut
-    func playerLost(player: Player) {
-        var dead = 0
-        for character in player.team.values {
-            if character.lifePoints <= 0 {
-                dead += 1
-            }
-        }
-        //    If all of the players team is dead the player lost
-        if dead == 3 {
-            player.won = false
-        }
     }
 }
 

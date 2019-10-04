@@ -24,8 +24,6 @@ while true {
     while game.isOver == false {
         
         game.playing(game: game, randomNumber: magicBox)
-        game.playerLost(player: game.player1)
-        game.playerLost(player: game.player2)
         game.lap += 1
         if game.player1.won == false {
             print("\(game.player1.name) lost !")
