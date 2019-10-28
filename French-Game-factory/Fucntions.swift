@@ -8,6 +8,8 @@ enum Error: String {
     case numericalValue = "Please enter a numerical value : "
     case emptyInput = "You need to type something :"
 }
+
+// When a player is creating his team this functions prints the list of Character that the player can choose from
 func printCharactersList(name: String) {
     var i = 1
     print("Please \(name) choose a character: \n")
@@ -18,13 +20,10 @@ func printCharactersList(name: String) {
     }
 }
 
-
-// Check if the user's input is an Int and if it is in the right range
+// This functions checks if the input is a number and if it is between a define range
 func readInput(min: Int, max: Int) -> Int {
     let input = readLine()!
-    //    Checking if the input is an Int
     if let isInt = Int(input){
-        //        Checking if the input is in the range
         if isInt >= min && isInt <= max {
             return isInt
         }
@@ -40,6 +39,7 @@ func readInput(min: Int, max: Int) -> Int {
     }
 }
 
+// This function check if the user did enter something
 func readStringInput() -> String {
     var string = readLine()!
     while string == "" {
@@ -49,11 +49,15 @@ func readStringInput() -> String {
     return string
 }
 
+// This function ask the playing player to give the computer to the next player
 func nextPlayer(playersName: String) {
     print("Hi \(playersName), can you please give the computer to the next player and press enter?")
-    
-    //    Waiting for the player to press enter to continue
     _ = readLine()
 }
 
-
+// This function ask the player's name 
+func presentation(player: Int) -> String {
+    print("Hi you're the player number \(player)! \nWhat's your name ?")
+    let playerName = readStringInput()
+    return playerName
+}

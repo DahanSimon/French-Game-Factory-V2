@@ -1,4 +1,4 @@
-public class Weapon {
+class Weapon {
     let weaponName: String
     let damageCapacity: Int
     let healingCapacity: Int

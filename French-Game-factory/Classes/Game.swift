@@ -3,74 +3,67 @@ class Game {
     let player1: Player
     let player2: Player
     var lap = 1
+    var magicChestRandomNumber: Int
     init(player1Name: String, player2Name: String) {
-        player1 = Player(playerName: player1Name)
-        player2 = Player(playerName: player2Name)
+        player1 = Player(playerName: player1Name, id: 1)
+        player2 = Player(playerName: player2Name, id: 2)
+        magicChestRandomNumber = Int.random(in: lap...(lap + magicChestFrequency))
     }
     
-    func playing(game: Game, randomNumber: Int) {
+    func playing() {
         var playerTurnIsOver = false
         
         var playingPlayer = player1
-        var oponent = player2
-        if game.lap % 2 == 0 {
+        var opponent = player2
+
+//         We check which player is playing
+        if self.lap % 2 == 0 {
             playingPlayer = player2
-            oponent = player1
+            opponent = player1
         }
         
         while playerTurnIsOver == false {
             
             print("\(playingPlayer.name) it's your turn ! Please select a character of your team to play with !")
+//            The method selectCharacter ask the player to choose a character in his own team to play with
+//            if this method return nil it means that every member of the playing player's team is dead and he lost
             guard let playingCharacter = selectCharacter(player: playingPlayer) else{
-                player1.won = false
                 return
             }
             print("You choosed \(playingCharacter.name)")
             print("\(playingCharacter.name) can use \(playingCharacter.weapon.weaponName)")
-            if lap == randomNumber {
-//                        Make the magicBox appear and change the playing character's weapon
-                magicBoxAppear(playingCharacter: playingCharacter)
+            
+            if lap == self.magicChestRandomNumber {
+                magicChestAppear(playingCharacter: playingCharacter)
             }
-//                If the character playing character is an attacker
             if playingCharacter.role == Role.attacker {
-                
-                attackerPlaying(playingCharacter: playingCharacter, oponent: oponent)
+                attackerPlaying(playingCharacter: playingCharacter, opponent: opponent)
                 playerTurnIsOver = true
             }
-                
             else {
                 healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
                 playerTurnIsOver = true
-                
-                
             }
         }
     }
     
-    func attackerPlaying(playingCharacter: Character, oponent: Player) {
+    private func attackerPlaying(playingCharacter: Character, opponent: Player) {
  
-        print("On wich member of \(oponent.name)'s team would like to use \(playingCharacter.weapon.weaponName)")
-        //                    Asking wich character the user would like to attack
-        guard let attackedCharacter = selectCharacter(player: oponent) else {
-//            if there is nothing to select it means that every member the oponent's team is dead so he lost
-            oponent.won = false
+        print("On which member of \(opponent.name)'s team would like to use \(playingCharacter.weapon.weaponName)")
+        guard let attackedCharacter = selectCharacter(player: opponent) else {
             return
         }
-        //                        We decrease the attacked character life Points
         attackedCharacter.lifePoints -= playingCharacter.weapon.damageCapacity
         print("\(playingCharacter.name) attacked \(attackedCharacter.name) with his \(playingCharacter.weapon.weaponName) and now \(attackedCharacter.name)'s lifepoint are down to \(attackedCharacter.lifePoints)")
     }
     
-    func healerPlaying(playingCharacter: Character, player: Player) {
-        //                    Asking wich character the user would like to heal
+    private func healerPlaying(playingCharacter: Character, player: Player) {
         guard let healedCharacter = selectCharacter(player: player) else{
-            //            if there is nothing to select it means that every member the player's team is dead so he lost
-            player.won = false
             return
         }
         if healedCharacter.role != Role.healer {
-            //                        We increase the healed character life Points
             healedCharacter.lifePoints += playingCharacter.weapon.healingCapacity
+            
             print("\(playingCharacter.name) healed \(healedCharacter.name) with his \(playingCharacter.weapon.weaponName) and now \(healedCharacter.name)'s lifepoint are up to \(healedCharacter.lifePoints)")
         }
         else {
@@ -79,13 +72,12 @@ class Game {
         }
     }
     
-    func selectCharacter(player: Player) -> Character?{
+//    This method tries to create a dictionnary of the alive character of a player and if it can it asks the player to choose a character from the dictionnary it just created otherwise it return nil to make the playing method know that all the member of the player's team is dead
+    private func selectCharacter(player: Player) -> Character?{
         var aliveCharacter: [Int: Character]
-        printPlayersTeam(player: player)
-//        we create a dictionnary of only the alive character from the player's team
         aliveCharacter = createDictionnary(player: player)
-//        if aliveCharcater is empty it means that every member of the player's team is dead so we don(t ask him to choose
         if aliveCharacter.count != 0 {
+            printPlayersTeam(player: player)
             let playingCharacterIndex = readInput(min: 1, max: aliveCharacter.count)
             if let selectedCharacter = aliveCharacter[playingCharacterIndex] {
                 return selectedCharacter
@@ -94,10 +86,9 @@ class Game {
         return nil
     }
     
-    func printStats(winner: Player, looser: Player, lap: Int) {
-        print("The party is over, \(winner.name) won ! In \(lap) laps.\n"
-            +  "This is his team\n")
-        //    We print the winner's team and his character's lifePoints
+    func printStats(winner: Player, looser: Player) {
+        print("The party is over, \(winner.name) won ! In \(self.lap) laps.\n"
+            +  "\nThis is his team :")
         for character in winner.team.values {
             if character.lifePoints > 0 {
                 print(" - \(character.name)\t" + "\(character.lifePoints) ")
@@ -107,54 +98,46 @@ class Game {
             }
             
         }
-        print("Against \(looser.name), this is his team :")
-        //    We print the loser's team
+        print("\nAgainst \(looser.name), this is his team :")
         for caracter in looser.team.values {
-            print(" - \(caracter.name)\t")
+            print(" - \(caracter.name)\t" + "DEAD")
         }
     }
     
-    func magicBoxAppear(playingCharacter: Character) {
+    private func magicChestAppear(playingCharacter: Character) {
         print("Wait a minute what's that ?")
         _ = readLine()
-        print("A box appeeared let's open it !")
+        print("A Chest appeeared let's open it !")
         _ = readLine()
-        
-        //    We pick a random number to choose random weapon
+//      This line select randomly a number between 0 and 3 to select a weapon in the weapon array you can change the 3 to lower values to exclude weapon from being picked randomly
         let randomWeapon = attackWeaponArray[Int.random(in: 0...3)]
-        print(randomWeapon.weaponName)
         if playingCharacter.role == Role.healer {
-            //        if the playing character is using prayer
             if playingCharacter.weapon.weaponName == "Prayer" {
                 print("Wow \(playingCharacter.name) found a Magic Bean !")
                 _ = readLine()
                 print("\(playingCharacter.name) is now using Magic Bean to heal his partners !")
                 _ = readLine()
-                //            we change his weapon to magic Bean
                 playingCharacter.weapon = Weapon.magicBean()
             }
-                //           if the playing character is using magic bean
             else {
                 print("Wow \(playingCharacter.name) found a clerical colar !")
                 _ = readLine()
                 print("\(playingCharacter.name) is now praying to heal his partners !")
                 _ = readLine()
-                //            we change his weapon to prayer
                 playingCharacter.weapon = Weapon.prayer()
             }
         }
-            //       if the playing character is an attacker
         else {
             print("Wow \(playingCharacter.name) found a \(randomWeapon.weaponName) !")
             print("\(playingCharacter.name) is now using \(randomWeapon.weaponName) as weapon !")
-            //        We change his weapon to a random one
             playingCharacter.weapon = randomWeapon
         }
+        let nextLap = self.lap + 1
+        self.magicChestRandomNumber = Int.random(in: nextLap...(nextLap + abs(magicChestFrequency)))
     }    
     
     func printPlayersTeam(player: Player) {
         var i = 1
-        //    We print the players team by going threw the array
         for (character) in player.team.values {
             if character.lifePoints > 0 {
                 print("\(i)- \(character.name), is a \(character.role), he has \(character.lifePoints) lifepoints, he can use his \(character.weapon.weaponName)")
@@ -164,7 +147,8 @@ class Game {
         }
     }
     
-    func createDictionnary(player: Player) -> [Int: Character] {
+//    this method create a dictionnary of the alive character of a player's team and returns it
+    private func createDictionnary(player: Player) -> [Int: Character] {
         var i = 1
         var aliveCharacter = [Int: Character]()
         for (character) in player.team.values {
@@ -176,13 +160,18 @@ class Game {
         }
         return aliveCharacter
     }
+    
+    func playerDidLost(player: Player){
+        if player.won == true {
+            print("\(player.name) lost !")
+            if player.id == 1 {
+                printStats(winner: self.player2, looser: player)
+            }
+            else {
+                printStats(winner: self.player1, looser: player)
+            }
+            self.isOver = true
+        }
+
+    }
 }
-
-let characterList = ["Name: Priest,role: Healer, lifePoints: 80, weapon: Prayer, Healing Capacity: 20",
-                     "Name: Dartagnan, role: attacker, lifePoints: 100, weapon: sword, Damage Capacity: 25",
-                     "Name: Baltazar, role: attacker, lifePoints: 150, weapon: bowAndArrow, Damage Capacity: 25",
-                     "Name: Raziel, role: attacker, lifePoints: 100, weapon: flameThrower, Damage Capacity: 40",
-                     "Name: Destroyer, role: attacker, lifePoints: 110, weapon: bazooka, Damage Capacity: 30",
-                     "Name: Raphaello, role: healer, lifePoints: 30, weapon: magicBean, Healing Capacity: 100"]
-
-let attackWeaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.bazooka(), Weapon.sword()]

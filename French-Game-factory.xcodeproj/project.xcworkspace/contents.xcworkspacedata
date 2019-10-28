@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/simondahan/Documents/Formation/projet3/FrenchGam Factory/French-Game-factory/French-Game-factory/Fucntions.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/simondahan/Documents/Formation/projet3/FrenchGam Factory/French-Game-factory/French-Game-factory/WeaponArray.swift">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>
