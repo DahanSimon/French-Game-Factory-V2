@@ -32,13 +32,12 @@ class Player {
             print("What name would you like to give to your character ?")
             var pickedCharacterNewName = readStringInput()
             
-            var check = checkCaracterName(player: self, choosedName: pickedCharacterNewName)
+            var check = checkCaracterName(choosedName: pickedCharacterNewName)
             
             while check == false {
                 print("This character already exist please choose another name ! Please enter an unused name: ")
                 pickedCharacterNewName = readStringInput()
-                check = checkCaracterName(player: self, choosedName: pickedCharacterNewName)
-                
+                check = checkCaracterName(choosedName: pickedCharacterNewName)
             }
             let newCharacter = selcectAndNameCharacter(pickedCharacter: selectedCharacterIndex, newCharacterName: pickedCharacterNewName)
             self.team[time] = newCharacter
@@ -78,12 +77,13 @@ class Player {
     }
     
     
-    private func checkCaracterName(player: Player, choosedName: String) -> Bool{
-        for characterName in player.team.values {
-            if characterName.name == choosedName {
+    private func checkCaracterName(choosedName: String) -> Bool{
+        for name in characterNames {
+            if name == choosedName {
                 return false
             }
         }
+        characterNames.append(choosedName)
         return true
         
     }

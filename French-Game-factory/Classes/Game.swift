@@ -175,3 +175,8 @@ class Game {
 
     }
 }
+// Plantage ok
+// POSSIBilté
+// Nom tous les persos ok
+// Singlee responsabilities
+// clean code livre

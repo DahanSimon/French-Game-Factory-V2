@@ -12,7 +12,7 @@
 		6B260FDE23310F1600F3210D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDD23310F1600F3210D /* Player.swift */; };
 		6B260FE023310F3900F3210D /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDF23310F3900F3210D /* Character.swift */; };
 		6B260FE72331116D00F3210D /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FE62331116D00F3210D /* Weapon.swift */; };
-		6B261029233B98C200F3210D /* Fucntions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B261027233B98C200F3210D /* Fucntions.swift */; };
+		6B261029233B98C200F3210D /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B261027233B98C200F3210D /* Functions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +34,7 @@
 		6B260FDD23310F1600F3210D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6B260FDF23310F3900F3210D /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		6B260FE62331116D00F3210D /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
-		6B261027233B98C200F3210D /* Fucntions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Fucntions.swift; path = "/Users/simondahan/Documents/Formation/projet3/FrenchGam Factory/French-Game-factory/French-Game-factory/Fucntions.swift"; sourceTree = "<absolute>"; };
+		6B261027233B98C200F3210D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Functions.swift; path = "/Users/simondahan/Documents/Formation/projet3/FrenchGam Factory/French-Game-factory/French-Game-factory/Functions.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			children = (
 				6B260FDA23310EA500F3210D /* Classes */,
 				6B260FD823310AA500F3210D /* main.swift */,
-				6B261027233B98C200F3210D /* Fucntions.swift */,
+				6B261027233B98C200F3210D /* Functions.swift */,
 			);
 			path = "French-Game-factory";
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B261029233B98C200F3210D /* Fucntions.swift in Sources */,
+				6B261029233B98C200F3210D /* Functions.swift in Sources */,
 				6B260FDE23310F1600F3210D /* Player.swift in Sources */,
 				6B260FE72331116D00F3210D /* Weapon.swift in Sources */,
 				6B260FE023310F3900F3210D /* Character.swift in Sources */,

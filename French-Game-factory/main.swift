@@ -8,6 +8,8 @@ let characterList = ["Name: Priest,role: Healer, lifePoints: 80, weapon: Prayer,
 
 let attackWeaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.bazooka(), Weapon.sword(), Weapon.magicBean(), Weapon.prayer()]
 
+var characterNames = [String]()
+
 // Change this value to increase or decrease the frequency of occurrence of the magic chest
 let magicChestFrequency = 8
 
