@@ -27,4 +27,33 @@ class Character {
     static func Raphaello() -> Character {
         return Character(name: "Raphaello", role: .healer, lifePoints: 30, weapon: Weapon.magicBean())
     }
+    
+    
+    
+    func attackerPlaying(playingCharacter: Character, opponent: Player) {
+        
+        print("On which member of \(opponent.name)'s team would like to use \(playingCharacter.weapon.weaponName)")
+        guard let attackedCharacter = opponent.selectCharacter() else {
+            return
+        }
+        attackedCharacter.lifePoints -= playingCharacter.weapon.damageCapacity
+        print("\(playingCharacter.name) attacked \(attackedCharacter.name) with his \(playingCharacter.weapon.weaponName) and now \(attackedCharacter.name)'s lifepoint are down to \(attackedCharacter.lifePoints)")
+    }
+    
+    
+    func healerPlaying(playingCharacter: Character, player: Player) {
+        guard let healedCharacter = player.selectCharacter() else{
+            return
+        }
+        if healedCharacter.role != Role.healer {
+            healedCharacter.lifePoints += playingCharacter.weapon.healingCapacity
+            
+            print("\(playingCharacter.name) healed \(healedCharacter.name) with his \(playingCharacter.weapon.weaponName) and now \(healedCharacter.name)'s lifepoint are up to \(healedCharacter.lifePoints)")
+        }
+        else {
+            print("Sorry you can't heal a healer try again ")
+            healerPlaying(playingCharacter: playingCharacter, player: player)
+        }
+    }
+
 }

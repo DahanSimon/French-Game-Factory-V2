@@ -85,7 +85,48 @@ class Player {
         }
         characterNames.append(choosedName)
         return true
-        
+    }
+    
+    
+    //    This method tries to create a dictionnary of the alive character of a player and if it can it asks the player to choose a character from the dictionnary it just created otherwise it return nil to make the playing method know that all the member of the player's team is dead
+    
+    func selectCharacter() -> Character?{
+        var aliveCharacter: [Int: Character]
+        aliveCharacter = createDictionnary()
+        if aliveCharacter.count != 0 {
+            printPlayersTeam()
+            let playingCharacterIndex = readInput(min: 1, max: aliveCharacter.count)
+            if let selectedCharacter = aliveCharacter[playingCharacterIndex] {
+                return selectedCharacter
+            }
+        }
+        return nil
+    }
+    
+    
+    //    this method create a dictionnary of the alive character of a player's team and returns it
+    func createDictionnary() -> [Int: Character] {
+        var i = 1
+        var aliveCharacter = [Int: Character]()
+        for (character) in self.team.values {
+            if character.lifePoints > 0 {
+                aliveCharacter[i] = character
+                i += 1
+            }
+            
+        }
+        return aliveCharacter
+    }
+    
+    func printPlayersTeam() {
+        var i = 1
+        for (character) in self.team.values {
+            if character.lifePoints > 0 {
+                print("\(i)- \(character.name), is a \(character.role), he has \(character.lifePoints) lifepoints, he can use his \(character.weapon.weaponName)")
+                i += 1
+            }
+            
+        }
     }
     
     
