@@ -112,7 +112,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "Simon Dahan";
 				TargetAttributes = {
 					6B260FCD2330F84C00F3210D = {
@@ -126,6 +126,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 6B260FC52330F84C00F3210D;
 			productRefGroup = 6B260FCF2330F84C00F3210D /* Products */;
@@ -272,6 +273,7 @@
 		6B260FD62330F84C00F3210D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9S2GW6G25E;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,6 +284,7 @@
 		6B260FD72330F84C00F3210D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9S2GW6G25E;
 				PRODUCT_NAME = "$(TARGET_NAME)";

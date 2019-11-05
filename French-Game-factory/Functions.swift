@@ -33,7 +33,6 @@ func readInput(min: Int, max: Int) -> Int {
         else {
             print("\(Error.outOfRange.rawValue) and \(max) :")
             return readInput(min: min, max: max)
-            
         }
     }
     else {

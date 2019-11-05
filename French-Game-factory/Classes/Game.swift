@@ -28,29 +28,22 @@ class Game {
                 return player1
             }
         }
+        print("\(playingPlayer.name) it's your turn ! Please select a character of your team to play with !")
+        //            The method selectCharacter ask the player to choose a character in his own team to play with
+        //            if this method return nil it means that every member of the playing player's team is dead and he lost
+        guard let playingCharacter = playingPlayer.selectCharacter() else{
+            return
+        }
+        print("\(playingCharacter.name) can use \(playingCharacter.weapon.weaponName)")
         
-        while playerTurnIsOver == false {
-            
-            print("\(playingPlayer.name) it's your turn ! Please select a character of your team to play with !")
-            //            The method selectCharacter ask the player to choose a character in his own team to play with
-            //            if this method return nil it means that every member of the playing player's team is dead and he lost
-            guard let playingCharacter = playingPlayer.selectCharacter() else{
-                return
-            }
-            print("You choosed \(playingCharacter.name)")
-            print("\(playingCharacter.name) can use \(playingCharacter.weapon.weaponName)")
-            
-            if lap == self.magicChestRandomNumber {
-                magicChestAppear(playingCharacter: playingCharacter)
-            }
-            if playingCharacter.role == Role.attacker {
-                playingCharacter.attackerPlaying(playingCharacter: playingCharacter, opponent: opponent)
-                playerTurnIsOver = true
-            }
-            else {
-                playingCharacter.healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
-                playerTurnIsOver = true
-            }
+        if lap == self.magicChestRandomNumber {
+            magicChestAppear(playingCharacter: playingCharacter)
+        }
+        if playingCharacter.role == Role.attacker {
+            playingCharacter.attackerPlaying(playingCharacter: playingCharacter, opponent: opponent)
+        }
+        else {
+            playingCharacter.healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
         }
     }
     

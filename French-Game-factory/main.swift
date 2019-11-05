@@ -11,7 +11,7 @@ let attackWeaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.baz
 var characterNames = [String]()
 
 // Change this value to increase or decrease the frequency of occurrence of the magic chest
-let magicChestFrequency = 8
+let magicChestFrequency = 20
 
 while true {
     print("Press enter to start the game !")

@@ -16,7 +16,6 @@ class Player {
         self.id = id
     }
     
-    
     func createTeam() {
         
         var time = 1
@@ -76,7 +75,6 @@ class Player {
         
     }
     
-    
     private func checkCaracterName(choosedName: String) -> Bool{
         for name in characterNames {
             if name == choosedName {
@@ -87,9 +85,7 @@ class Player {
         return true
     }
     
-    
     //    This method tries to create a dictionnary of the alive character of a player and if it can it asks the player to choose a character from the dictionnary it just created otherwise it return nil to make the playing method know that all the member of the player's team is dead
-    
     func selectCharacter() -> Character?{
         var aliveCharacter: [Int: Character]
         aliveCharacter = createDictionnary()
@@ -97,15 +93,15 @@ class Player {
             printPlayersTeam()
             let playingCharacterIndex = readInput(min: 1, max: aliveCharacter.count)
             if let selectedCharacter = aliveCharacter[playingCharacterIndex] {
+                print("You choosed \(selectedCharacter.name)")
                 return selectedCharacter
             }
         }
         return nil
     }
     
-    
     //    this method create a dictionnary of the alive character of a player's team and returns it
-    func createDictionnary() -> [Int: Character] {
+    private func createDictionnary() -> [Int: Character] {
         var i = 1
         var aliveCharacter = [Int: Character]()
         for (character) in self.team.values {
@@ -125,9 +121,6 @@ class Player {
                 print("\(i)- \(character.name), is a \(character.role), he has \(character.lifePoints) lifepoints, he can use his \(character.weapon.weaponName)")
                 i += 1
             }
-            
         }
     }
-    
-    
 }
