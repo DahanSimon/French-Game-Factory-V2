@@ -1,8 +1,3 @@
-enum Role {
-    case healer
-    case attacker
-}
-
 enum Error: String {
     case outOfRange = "Please enter a value between 1 "
     case numericalValue = "Please enter a numerical value : "

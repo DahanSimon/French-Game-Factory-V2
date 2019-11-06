@@ -1,5 +1,4 @@
 class Game {
-    var isOver = false
     let player1: Player
     let player2: Player
     var lap = 1
@@ -10,8 +9,10 @@ class Game {
         magicChestRandomNumber = Int.random(in: lap...(lap + magicChestFrequency))
     }
     
+    var isOver: Bool {
+        return player1.lost == true || player2.lost == true
+    }
     func playing() {
-        var playerTurnIsOver = false
         var playingPlayer: Player {
             if self.lap % 2 == 0 {
                 return player2
@@ -39,15 +40,15 @@ class Game {
         if lap == self.magicChestRandomNumber {
             magicChestAppear(playingCharacter: playingCharacter)
         }
-        if playingCharacter.role == Role.attacker {
-            playingCharacter.attackerPlaying(playingCharacter: playingCharacter, opponent: opponent)
+        if let healer = playingCharacter as? Healer {
+            healer.healerPlaying(player: playingPlayer)
         }
-        else {
-            playingCharacter.healerPlaying(playingCharacter: playingCharacter, player: playingPlayer)
+        else if let attacker = playingCharacter as? Attacker{
+            attacker.attackerPlaying(opponent: opponent)
         }
     }
     
-    private func printStats(winner: Player, looser: Player) {
+   func printStats(winner: Player, looser: Player) {
         print("The party is over, \(winner.name) won ! In \(self.lap) laps.\n"
             +  "\nThis is his team :")
         for character in winner.team.values {
@@ -70,7 +71,7 @@ class Game {
         _ = readLine()
         print("A Chest appeeared let's open it !")
         _ = readLine()
-        if playingCharacter.role == Role.healer {
+        if playingCharacter is Healer{
             healerGettingNewWeapon(playingCharacter: playingCharacter)
         }
         else {
@@ -99,23 +100,9 @@ class Game {
     
     private func attackerGettingNewWeapon(playingCharacter: Character) {
         //      This line select randomly a number between 0 and 3 to select a weapon in the weapon array you can change the 3 to lower values to exclude weapon from being picked randomly
-        let randomWeapon = attackWeaponArray[Int.random(in: 0...3)]
+        let randomWeapon = weaponArray[Int.random(in: 0...3)]
         print("Wow \(playingCharacter.name) found a \(randomWeapon.weaponName) !")
         print("\(playingCharacter.name) is now using \(randomWeapon.weaponName) as weapon !")
         playingCharacter.weapon = randomWeapon
-    }
-    
-    func playerDidLost(player: Player){
-        if player.won == true {
-            print("\(player.name) lost !")
-            if player.id == 1 {
-                printStats(winner: self.player2, looser: player)
-            }
-            else {
-                printStats(winner: self.player1, looser: player)
-            }
-            self.isOver = true
-        }
-        
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0B24552372FAD20071C3F3 /* Healer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B24542372FAD20071C3F3 /* Healer.swift */; };
+		6B0B24572372FF000071C3F3 /* Attacker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B24562372FF000071C3F3 /* Attacker.swift */; };
 		6B260FD923310AA500F3210D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FD823310AA500F3210D /* main.swift */; };
 		6B260FDC23310EED00F3210D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDB23310EED00F3210D /* Game.swift */; };
 		6B260FDE23310F1600F3210D /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B260FDD23310F1600F3210D /* Player.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B0B24542372FAD20071C3F3 /* Healer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healer.swift; sourceTree = "<group>"; };
+		6B0B24562372FF000071C3F3 /* Attacker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attacker.swift; sourceTree = "<group>"; };
 		6B260FCE2330F84C00F3210D /* French-Game-factory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "French-Game-factory"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B260FD823310AA500F3210D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		6B260FDB23310EED00F3210D /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 				6B260FDB23310EED00F3210D /* Game.swift */,
 				6B260FE62331116D00F3210D /* Weapon.swift */,
 				6B260FDF23310F3900F3210D /* Character.swift */,
+				6B0B24542372FAD20071C3F3 /* Healer.swift */,
+				6B0B24562372FF000071C3F3 /* Attacker.swift */,
 				6B260FDD23310F1600F3210D /* Player.swift */,
 			);
 			path = Classes;
@@ -143,8 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0B24572372FF000071C3F3 /* Attacker.swift in Sources */,
 				6B261029233B98C200F3210D /* Functions.swift in Sources */,
 				6B260FDE23310F1600F3210D /* Player.swift in Sources */,
+				6B0B24552372FAD20071C3F3 /* Healer.swift in Sources */,
 				6B260FE72331116D00F3210D /* Weapon.swift in Sources */,
 				6B260FE023310F3900F3210D /* Character.swift in Sources */,
 				6B260FDC23310EED00F3210D /* Game.swift in Sources */,

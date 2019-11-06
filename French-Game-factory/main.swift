@@ -6,14 +6,14 @@ let characterList = ["Name: Priest,role: Healer, lifePoints: 80, weapon: Prayer,
                       "Name: Destroyer, role: attacker, lifePoints: 110, weapon: bazooka, Damage Capacity: 30",
                       "Name: Raphaello, role: healer, lifePoints: 30, weapon: magicBean, Healing Capacity: 100"]
 
-let attackWeaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.bazooka(), Weapon.sword(), Weapon.magicBean(), Weapon.prayer()]
+let weaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.bazooka(), Weapon.sword(), Weapon.magicBean(), Weapon.prayer()]
 
-var characterNames = [String]()
 
 // Change this value to increase or decrease the frequency of occurrence of the magic chest
-let magicChestFrequency = 20
+let magicChestFrequency = 200
 
 while true {
+    
     print("Press enter to start the game !")
     _ = readLine()
     
@@ -25,10 +25,10 @@ while true {
     
     let game = Game(player1Name: player1Name, player2Name: player2Name)
     
-    game.player1.createTeam()
+    game.player1.createTeam(unusableCharacterNames: [])
     nextPlayer(playersName: game.player1.name)
     
-    game.player2.createTeam()
+    game.player2.createTeam(unusableCharacterNames: game.player1.characterNames)
     nextPlayer(playersName: game.player2.name)
     
     while game.isOver == false {
@@ -36,11 +36,14 @@ while true {
         game.playing()
         game.lap += 1
         
-        game.playerDidLost(player: game.player1)
+        if game.player1.lost == true {
+            game.printStats(winner: game.player2, looser: game.player1)
+        }
+        else if game.player2.lost == true {
+            game.printStats(winner: game.player1, looser: game.player2)
+        }
         
         if game.isOver == false {
-            
-            game.playerDidLost(player: game.player2)
             
             if (game.lap % 2 == 0) && game.isOver == false {
                 nextPlayer(playersName: game.player1.name)
