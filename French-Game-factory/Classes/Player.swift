@@ -4,7 +4,7 @@ class Player {
     var lost: Bool {
         var deadCount = 0
         for character in team.values {
-            if character.lifePoints < 0 {
+            if character.lifePoints <= 0 {
                 deadCount += 1
             }
         }

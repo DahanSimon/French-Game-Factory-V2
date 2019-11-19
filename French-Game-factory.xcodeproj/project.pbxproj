@@ -38,7 +38,7 @@
 		6B260FDD23310F1600F3210D /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6B260FDF23310F3900F3210D /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		6B260FE62331116D00F3210D /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
-		6B261027233B98C200F3210D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Functions.swift; path = "/Users/simondahan/Documents/Formation/projet3/FrenchGam Factory/French-Game-factory/French-Game-factory/Functions.swift"; sourceTree = "<absolute>"; };
+		6B261027233B98C200F3210D /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
