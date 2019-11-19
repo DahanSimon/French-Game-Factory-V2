@@ -10,7 +10,7 @@ let weaponArray = [Weapon.bowAndArrow(), Weapon.flameThrower(), Weapon.bazooka()
 
 
 // Change this value to increase or decrease the frequency of occurrence of the magic chest
-let magicChestFrequency = 200
+let magicChestFrequency = 8
 
 while true {
     

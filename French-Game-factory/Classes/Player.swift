@@ -54,7 +54,7 @@ class Player {
         
         switch pickedCharacter {
         case 1:
-            return Healer(name: "Priest",lifePoints: 80, weapon: Weapon.prayer()) // Priest
+            return Healer(name: newCharacterName, lifePoints: 80, weapon: Weapon.prayer()) // Priest
         case 2:
             return Attacker(name: newCharacterName, lifePoints: 100, weapon: Weapon.sword()) // D'artagnan
         case 3:
